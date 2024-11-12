@@ -124,4 +124,4 @@ Given a scenario where the pod is compromised, an attacker can use the **hostPat
 
 Congratulations! You have identified a [host path mount](https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Writable%20hostPath%20mount/){: target="_blank" rel="noopener"} misconfiguration and exfiltrated the **Airborneio 24** flag from the Kubernetes node's file system.
 
-Continue to the [Shadowhawk Challenge](./shadowhawk.md) to learn how Kubernetes pod can inherit permissions from the underlying Kubernetes node.
+Continue to the [Shadowhawk Challenge](./shadowhawk.md) to learn how Kubernetes pods can inherit permissions from the underlying Kubernetes node.
