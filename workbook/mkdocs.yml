@@ -1,0 +1,77 @@
+site_name: "HTH 2024 Kubernetes Security Village"
+copyright: "©2024 Puma Security, LLC. All rights reserved."
+site_description: "Puma Security's Hackers Teaching Hackers (HTH) 2024 Kubernetes Village"
+site_author: "Eric Johnson"
+
+theme:
+  name: material
+  font:
+    text: "Roboto"
+    code: "Source Code Pro"
+  palette:
+    scheme: "slate"
+  icon:
+    logo: "material/home-variant"
+  logo: img/pumasecurity.png
+  favicon: img/pumasecurity.png
+  features:
+    - navigation.instant
+    - navigation.indexes
+    - content.code.annotate
+    - content.code.copy
+    - header.autohide: false
+
+nav:
+  - Home: "index.md"
+  - Initial Access: "initial-access.md"
+  - Airborneio-24: "airborneio-24.md"
+  - Shadowhawk: "shadowhawk.md"
+  - API Key: "api-key.md"
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - toc:
+      permalink: false
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: false
+      base_path:
+        - ./workbook/docs/
+        - ./source/workbook/docs/
+        - .
+        - ./source/
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - pymdownx.tilde
+
+extra_css:
+  - css/jquery.fancybox.min.css
+  - css/html.css
+  - css/custom.css
+
+extra_javascript:
+  - js/jquery.min.js
+  - js/jquery.fancybox.min.js
+  - js/workbook.js
+  - js/custom.js
