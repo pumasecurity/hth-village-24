@@ -98,7 +98,7 @@ Attackers gaining access to an EKS cluster will attempt to discover service acco
 
 ## Pod Privilege Escalation
 
-With the Kubernetes node's temporary instance profile credentials in hand, use those credentials to exfiltrate the **Shadowhawk** flag from S3. Open a new Terminal on your machine and set the required [AWS CLI environment variables](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-envvars.html){: target="_blank" rel="noopener"} to use the node's temporary credentials. Find the S3 bucket that contains the `shadowhawk` flag.
+With the Kubernetes node's temporary instance profile credentials in hand, use those credentials to exfiltrate the **Shadowhawk** flag from S3. Open a new Terminal on your machine and set the required [AWS CLI environment variables](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-envvars.html){: target="_blank" rel="noopener"} to use the node's temporary credentials. Then, use the AWS CLI to find the flag.
 
 1. Set the required AWS CLI environment variables to use the node's temporary credentials. What is the name of the S3 bucket that contains the `shadowhawk` flag.
 
@@ -197,7 +197,7 @@ With the Kubernetes node's temporary instance profile credentials in hand, use t
             aws s3api get-object --bucket hth-randomid --key flightplans/shadowhawk.txt ~/Downloads/shadowhawk.txt
             ```
 
-        - Open the file and find the **Startup Code** flag.
+        - Open the file and find the *Startup Code* line, which contains the flag.
 
             !!! abstract "Expected Output"
                 
@@ -205,7 +205,7 @@ With the Kubernetes node's temporary instance profile credentials in hand, use t
                 Startup Code: hth{?????}
                 ```
 
-## Conclusion
+## Next Challenge
 
 Congratulations! You have identified a privilege escalation opportunity using the [Instance Metadata API](https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Instance%20Metadata%20API/){: target="_blank" rel="noopener"} attacker technique and exfiltrated the **Shadowhawk** flag from the compromised AWS account.
 
