@@ -10,7 +10,7 @@ Review the pod configurations in the `hth` namespace. Which pod is using a **hos
 
 ??? tip "Hint"
 
-    - List the pods running in the `hth` namespace.
+    - List the pods running in the `hth` namespace. Make a note of the *api* pod's name, as you will need this in the next step.
 
         ```bash
         kubectl get pods -n hth
@@ -26,7 +26,7 @@ Review the pod configurations in the `hth` namespace. Which pod is using a **hos
     - Describe the configuration for each pod using the `kubectl describe pod` command. Search the output for the pod that has a **Volume** with a **Type** set to **HostPath**. The volume's **Path** is pointing to a directory on the node's file system that will be accessible from inside a pod running in the cluster.
 
         ```bash
-        kubectl describe pod -n hth ENTER_POD_NAME 
+        kubectl describe pod -n hth ENTER_API_POD_NAME 
         ```
 
         !!! abstract "Expected Output"
@@ -66,7 +66,7 @@ Given a scenario where the pod is compromised, an attacker can use the **hostPat
     - Use the `kubectl exec` command to obtain a shell on the compromised pod.
 
         ```bash
-        kubectl exec --stdin --tty -n hth ENTER_POD_NAME -- /bin/bash
+        kubectl exec --stdin --tty -n hth ENTER_API_POD_NAME -- /bin/bash
         ```
 
 
