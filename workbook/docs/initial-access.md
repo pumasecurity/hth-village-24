@@ -109,11 +109,46 @@ With the appropriate [EKS access entry](https://docs.aws.amazon.com/eks/latest/u
 
     ??? success "Answer"
 
-        - The compromised principal is a member of the **hth-data-viewers** and **system:authenticated** groups. Based on the name of the first group (`hth-data-viewers`), it is likely that the principal has read-only access to resources in the cluster that live in the `hth` namespace.
+        - The compromised principal is a member of the **hth-data-viewers** and **system:authenticated** groups. Based on the name of the first group (`hth-data-viewers`), it is likely that the principal has read-only access to data inside the cluster.
 
+            !!! abstract "Expected Output"
+                ```
+                Groups [hth-data-viewers system:authenticated]
+                ```
+
+1. Use `kubectl` to list the namespaces in the Kubernetes cluster. Which namespace do you think contains the *hth* data?
+
+    ??? tip "Hint"
+
+        - Run the `kubectl get namespaces` command to list the namespaces in the EKS cluster.
+
+            ```bash
+            kubectl get namespaces
             ```
-            Groups [hth-data-viewers system:authenticated]
-            ```
+
+            !!! abstract "Expected Output"
+                ```bash
+                NAME                STATUS   AGE
+                amazon-cloudwatch   Active   5d18h
+                calico-system       Active   5d17h
+                cert-manager        Active   5d17h
+                default             Active   5d18h
+                gatekeeper-system   Active   5d17h
+                ?????               Active   5d17h
+                kube-node-lease     Active   5d18h
+                kube-public         Active   5d18h
+                kube-system         Active   5d18h
+                tigera-operator     Active   5d17h
+                ```
+
+    ??? success "Answer"
+
+        - The **hth** namespace contains the Kubernetes resources that are viewable by members of the **hth-data-viewers** group.
+
+            !!! abstract "Expected Output"
+                ```
+                hth                 Active   5d17h
+                ```
 
 ## Village Challenges
 
