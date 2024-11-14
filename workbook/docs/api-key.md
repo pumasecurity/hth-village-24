@@ -109,6 +109,8 @@ Now that you have identified the Kubernetes secret name, use `kubectl` read the 
         hth{?????}
         ```
 
-## Conclusion
+## Next Challenge
 
-Congratulations! You have successfully located the Kubernetes secret and decoded the value. You have completed the Hackers Teaching Hackers 2024 Kubernetes Security Village.
+Congratulations! You have successfully located the *API Key* Kubernetes secret being used by the UI pod. Then, decoded the value to reveal the flag.
+
+Continue to the [Cascadia Cockpit Voice Recorders (CVR) Challenge](./cascadia-cvr.md) to learn how the Kubernetes node is authenticating to the private container registry and pulling images.

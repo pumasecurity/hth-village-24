@@ -27,6 +27,7 @@ nav:
   - Airborneio-24: "airborneio-24.md"
   - Shadowhawk: "shadowhawk.md"
   - API Key: "api-key.md"
+  - Cascadia CVR: "cascadia-cvr.md"
 
 markdown_extensions:
   - admonition

@@ -110,6 +110,7 @@ With the Kubernetes node's temporary instance profile credentials in hand, use t
             export AWS_ACCESS_KEY_ID=ENTER_NODE_ROLE_ACCESS_KEY_ID
             export AWS_SECRET_ACCESS_KEY=ENTER_NODE_ROLE_SECRET_ACCESS_KEY
             export AWS_SESSION_TOKEN=ENTER_NODE_ROLE_SESSION_TOKEN
+            export AWS_DEFAULT_REGION=us-west-2
             ```
 
         - Run the `aws sts get-caller-identity` command to verify you have properly configured the IAM role's temporary credentials. The output should show you are authenticating as the node's EC2 instance profile role.

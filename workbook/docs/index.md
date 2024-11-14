@@ -54,6 +54,21 @@ Before you can start the Kubernetes Security village, the following command line
         Kustomize Version: v5.4.2
         ```
 
+### Docker
+
+1. Follow the [Installing Docker Engine](https://docs.docker.com/engine/install/){: target="_blank" rel="noopener"} instructions.
+
+1. Verify the Docker CLI is installed correctly by running the following command in your Terminal:
+
+    ```bash
+    docker --version
+    ```
+
+    !!! abstract "Expected Output"
+        ```
+        Docker version 26.1.1, build 4cf5afa
+        ```
+
 ## Getting Started
 
 Start by visiting the Kubernetes Security Village table. Your village hosts, Eric Johnson and Eric Mead, will provide you with a set of *stolen AWS access keys* to simulate a compromise. From there, it is up to you to gain [Initial Access](./initial-access.md) to the Kubernetes cluster and discover the flags hidden in the environment.
