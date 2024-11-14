@@ -209,4 +209,10 @@ With the Kubernetes node's temporary instance profile credentials in hand, use t
 
 Congratulations! You have identified a privilege escalation opportunity using the [Instance Metadata API](https://microsoft.github.io/Threat-Matrix-for-Kubernetes/techniques/Instance%20Metadata%20API/){: target="_blank" rel="noopener"} attacker technique and exfiltrated the **Shadowhawk** flag from the compromised AWS account.
 
+Before you move on to the next challenge, make sure you clear the environment variables that are using the node's temporary credentials. This can be done by closing your Terminal or running the following *unset* command.
+
+```bash
+unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+```
+
 Continue to the [API Key Challenge](./api-key.md) to learn how Kubernetes secrets are attached to a pod.
