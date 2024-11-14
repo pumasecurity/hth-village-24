@@ -1,6 +1,6 @@
 # Shadowhawk Challenge
 
-The *Shadowhawk* challenge requires you to find a flag located in the AWS Simple Storage Service (S3). Unfortunately, the *kubeace-maverick* IAM user does not have permissions to the AWS S3 API. Without direct access to S3, you will need to escalate your AWS permissions to gain access to the flag.
+The *Shadowhawk* challenge requires you to find a flag located in the AWS Simple Storage Service (S3). Unfortunately, the *kubeace-maverick* IAM user does not have permissions to the AWS S3 API. Without direct access to S3, you will need to use the [AWS Instance Metadata Service IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html){: target="_blank" rel="noopener"} to escalate your AWS permissions and gain access to the flag.
 
 ## Pod Permission Inheritance
 
@@ -14,7 +14,7 @@ Attackers gaining access to an EKS cluster will attempt to discover service acco
 
     ??? tip "Hint"
 
-        Run `aws s3api list-buckets` command to list the S3 buckets in AWS account.
+        Run `aws s3api list-buckets` command to list the S3 buckets in the AWS account.
 
         ```bash
         aws s3api list-buckets
