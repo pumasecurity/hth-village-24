@@ -43,7 +43,7 @@ Review the pod configurations in the `hth` namespace. Which pod is using a **hos
         !!! abstract "Expected Output"
             ```yaml hl_lines="2"
             Mounts:
-              ????? from hth (rw)
+              ????? from hth (ro)
               /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-rgfww (ro)
             ```
 
